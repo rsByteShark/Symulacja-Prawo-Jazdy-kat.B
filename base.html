@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prawo Jazdy</title>
+    <style>
+        body {
+            background-color: grey;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+        }
+
+        div.container {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            width: 600px;
+            margin: 5em auto;
+            padding: 2em;
+            background-color: rgb(178, 115, 115);
+            border-radius: 0.5em;
+            box-shadow: 2px 3px 7px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        button {
+            background-color: grey;
+            border: 1px solid black;
+            cursor: pointer;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="databaseDownloadDisplay" class="container">
+        <span id="downloadInfo">Pobieranie wizualizacji do pytań ... 0%</span>
+        <progress style="width: 100%;"></progress>
+    </div>
+    <div id="startExamDisplay" class="container">
+        <button onclick="window.location.href = '/exam.html'">Start Exam</button>
+    </div>
+    <script>
+
+        const progressBar = document.querySelector("progress");
+        const downloadInfoSpan = document.querySelector("span");
+        const startExamDisplay = document.querySelector("#startExamDisplay");
+        const databaseDownloadDisplay = document.querySelector("#databaseDownloadDisplay");
+
+        const getDatabaseInfo = async (firstCall) => {
+
+            const response = await fetch("/getdatabaseinfo");
+
+            console.log(response.status);
+
+            if (response.status === 200) {
+
+                /**@type {{downloading:boolean,maxSize:number,downloadedSize:number}}*/
+                const responseData = await response.json();
+
+                if (responseData.downloading) {
+
+                    if (firstCall) {
+
+                        databaseDownloadDisplay.style.display = "flex";
+
+                        progressBar.setAttribute("max", responseData.maxSize);
+                    }
+
+                    const percentageProgress = (100 * responseData.downloadedSize) / responseData.maxSize;
+
+                    const fixedValue = percentageProgress.toFixed(2);
+
+                    downloadInfoSpan.innerText = `Pobieranie wizualizacji do pytań ... ${isNaN(fixedValue) ? 0 : fixedValue}%`;
+
+                    progressBar.setAttribute("value", responseData.downloadedSize);
+
+
+                } else {
+
+                    databaseDownloadDisplay.style.display = "none";
+
+                    startExamDisplay.style.display = "flex";
+
+                }
+
+                return responseData.downloading
+
+            }
+
+
+            return false
+
+        }
+
+
+        let dataBaseIsDownloading = false;
+
+        const initCall = async () => {
+
+            do {
+
+                dataBaseIsDownloading = await getDatabaseInfo(true);
+
+            } while (dataBaseIsDownloading) {
+
+                dataBaseIsDownloading = await getDatabaseInfo();
+
+            }
+
+        }
+
+
+        initCall();
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+datasource db {
+    provider = "sqlite"
+
+    url = env("DATABASE_LOCATION")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model BaseContent {
+    pathname String @unique
+
+    data Bytes
+}
+
+model VisualMedia {
+    medianame String @unique
+
+    data Bytes
+}
