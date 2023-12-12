@@ -1,8 +1,8 @@
 Pisana na kolanie symulacja egzaminu na prawo jazdy kat b.
 
-Wszystkie pytania i wizualizacje do nich pochodzą [stąd](https://www.gov.pl/web/infrastruktura/prawo-jazdy)
+Wszystkie pytania i wizualizacje do nich pochodzą [stąd](https://www.gov.pl/web/infrastruktura/prawo-jazdy).
 
-Pytania zostały posortowane po punktacji i kazde z nich ma przypisany unikatowy identyfikator znajdują się w [tym](./PrawoB.json) pliku
+Pytania zostały posortowane po punktacji i kazde z nich ma przypisany unikatowy identyfikator.Są dosępne w pliku PrawoB.json (plik jest skompresowany nie otwierac w przeglądarce).
 
 Wszystkie wizualizacje do pytań zostały skompresowane i umieszczone w sqlitowej bazie dany o modelu określonym [tutaj](./prawoKatBDB.prisma). 
 Baza danych jest dostępna pod [tym](https://drive.google.com/uc?id=1Y0OiTnh9TbskOMZEMi71ygGAqk3EuspY&export=download) linkiem.
