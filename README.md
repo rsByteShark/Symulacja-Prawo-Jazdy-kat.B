@@ -4,7 +4,7 @@ Wszystkie pytania i wizualizacje do nich pochodzą [stąd](https://www.gov.pl/we
 
 Pytania zostały posortowane po punktacji i kazde z nich ma przypisany unikatowy identyfikator.Są dosępne w pliku PrawoB.json (plik jest skompresowany nie otwierac w przeglądarce).
 
-Wszystkie wizualizacje do pytań zostały skompresowane i umieszczone w sqlitowej bazie dany o modelu określonym [tutaj](./prawoKatBDB.prisma). 
+Wszystkie wizualizacje do pytań zostały skompresowane i umieszczone w sqlitowej bazie danych o modelu określonym [tutaj](./prawoKatBDB.prisma). 
 Baza danych jest dostępna pod [tym](https://drive.google.com/uc?id=1Y0OiTnh9TbskOMZEMi71ygGAqk3EuspY&export=download) linkiem.
 
 Żeby zbuildować lokalnie ze źródła:
